@@ -545,10 +545,21 @@ function ExportPanel({ analysis, diagramRef }: { analysis: ArchitectureAnalysis;
             <BrainCircuit className="h-4 w-4" />
             AI second opinion
           </div>
+          <div className="mb-3 text-xs font-semibold text-ocean/80">
+            Provider: {analysis.aiStatus?.provider ?? "unknown"} {analysis.aiStatus?.model ? `(${analysis.aiStatus.model})` : ""}
+          </div>
           {analysis.aiNotes}
         </div>
       ) : (
-        <p className="mt-5 text-xs leading-5 text-ink/50">Free AI enrichment uses local Ollama by default or Gemini when `GEMINI_API_KEY` is set. The deterministic engine still works without either.</p>
+        <div className="mt-5 rounded-lg border border-ink/10 bg-white/60 p-4 text-xs leading-5 text-ink/55">
+          <div className="mb-1 font-bold text-ink/70">AI enrichment status</div>
+          <div>
+            Provider: {analysis.aiStatus?.provider ?? "none"} {analysis.aiStatus?.model ? `(${analysis.aiStatus.model})` : ""}
+          </div>
+          <div className={cn("mt-1", analysis.aiStatus?.provider === "gemini" && !analysis.aiStatus.ok && "text-clay")}>
+            {analysis.aiStatus?.message ?? "No AI enrichment was attempted."}
+          </div>
+        </div>
       )}
     </aside>
   );

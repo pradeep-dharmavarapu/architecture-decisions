@@ -50,7 +50,7 @@ npm audit --audit-level=moderate
    - Output: Next.js default
 4. Set environment variables only if you want hosted AI enrichment:
    - `GEMINI_API_KEY`
-   - `GEMINI_MODEL=gemini-1.5-flash`
+   - `GEMINI_MODEL=gemini-2.5-flash`
 5. Do not set `AI_PROVIDER=local` on Vercel unless `OLLAMA_BASE_URL` points to a reachable hosted Ollama server.
 6. After deployment, test:
    - Wizard navigation

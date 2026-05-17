@@ -43,6 +43,12 @@ export type ArchitectureAnalysis = {
   mermaid: string;
   manifest: Record<string, string | number | string[]>;
   aiNotes?: string;
+  aiStatus?: {
+    provider: "gemini" | "ollama" | "none";
+    model?: string;
+    ok: boolean;
+    message: string;
+  };
 };
 
 const has = (input: WizardInput, feature: string) => input.features.includes(feature);

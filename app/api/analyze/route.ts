@@ -6,7 +6,7 @@ export const runtime = "nodejs";
 export async function POST(request: Request) {
   const input = (await request.json()) as WizardInput;
   const analysis = analyzeArchitecture(input);
-  const aiNotes = await enrichWithFreeAi(input, analysis);
+  const ai = await enrichWithFreeAi(input, analysis);
 
-  return Response.json({ ...analysis, aiNotes });
+  return Response.json({ ...analysis, aiNotes: ai.notes, aiStatus: { provider: ai.provider, model: ai.model, ok: ai.ok, message: ai.message } });
 }
